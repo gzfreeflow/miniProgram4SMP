@@ -7,7 +7,7 @@
   </block>
 </view>
 <view class="content flex-row" bindtap="Signout">
-  <image src="../../images/user/logout.png" class="sm-img"></image>
+  <image src="../../images/user/logout.png" class="sm-img" mode='aspectFit'></image>
   <text>退出登录</text>
-  <image src="../../images/user/right.png" class="sm-img pull-right"></image>
+  <image src="../../images/user/right.png" class="sm-img pull-right" mode='aspectFit'></image>
 </view>

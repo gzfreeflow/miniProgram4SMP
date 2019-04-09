@@ -21,7 +21,7 @@
 <block wx:for="{{dataInfoList}}" wx:for-index="idx">
   <view class="device-data-infos" data-dataid='{{item.devid}}{{idx}}'>
     <view class='device--data-icon'>
-      <image src='/images/monitor/dataicon.png'></image>
+      <image mode='aspectFit' src='/images/monitor/dataicon.png'></image>
     </view>
     <view class='device-data'>
       <text class='device-data-name'>{{item.name}}</text>
@@ -48,7 +48,7 @@
     </view>
     <!-- <view bindtap="getHistory" data-dataid="{{item.id}}" style="font-size:37rpx;line-height:120rpx;">历史记录</view> -->
     <view bindtap="getHistory" class='data-chart' data-dataid='{{item.id}}' data-slaveIndex='{{item.slaveIndex}}'>
-      <image src='/images/monitor/chartIcon.png'></image>
+      <image mode='aspectFit' src='/images/monitor/chartIcon.png'></image>
     </view>
   </view>
 </block>

@@ -1,9 +1,10 @@
 <!--pages/login/login.wxml-->
+
 <view class="container">
   <view class="login-icon">
     <image class="login-img" mode='aspectFit' src="/images/yunLogo.png"></image>
   </view>
-  <view class="login-from">
+  <view class="login-form">
 
     <!--账号-->
     <view class="inputView">

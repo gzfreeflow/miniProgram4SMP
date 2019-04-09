@@ -59,11 +59,11 @@
 }
 
 .color-red {
-  color: #e4393c;
+  color: #f12639;
 }
 
 .color-gray {
-  color: gray;
+  color: #6c757d;
 }
 
 .line-through {

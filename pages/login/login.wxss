@@ -26,7 +26,7 @@ page {
 
 /*表单内容*/
 
-.login-from {
+.login-form {
   /* margin-top: 20rpx; */
   flex: auto;
   width: 100%;
@@ -50,7 +50,7 @@ page {
 
 .loginLab {
   margin: 15px 15px 15px 10px;
-  color: #545454;
+  color: #343440;
   font-size: 14px;
 }
 
@@ -61,14 +61,14 @@ page {
   text-align: right;
   margin-right: 22px;
   margin-top: 11px;
-  color: #ccc;
+  color: #6c757d;
   font-size: 14px;
 }
 
 .line {
   width: 100%;
   height: 1px;
-  background-color: #ccc;
+  background-color: #f3f8fc;
   margin-top: 1px;
 }
 

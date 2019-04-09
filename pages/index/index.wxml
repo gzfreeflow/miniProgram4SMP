@@ -38,19 +38,19 @@
       <label class="title col-0">设备编号：</label>
       <text class="input_base input_h30 col-1" name="rName">{{devinfo.id}}</text>
     </view>
-    <!-- <view class="top grid">
+    <!--view class="top grid">
       <label class="title col-0">关联数据：</label>
       <text class="input_base input_h30 col-1" name="rName">{{devinfo.pointCount}}</text>
-    </view> -->
+    </view-->
     <view class="top grid">
       <label class="title col-0">设备地址：</label>
       <text class="input_base input_h30 col-1" name="rName">{{devinfo.address}}</text>
     </view>
   </view>
   <view class='btn_operation'>
-    <!-- <view class="btn_ok" bindtap="powerDrawer" data-statu="close" data-id='0'>设备管理</view> -->
+    <!--view class="btn_ok" bindtap="powerDrawer" data-statu="close" data-id='0'>设备管理</view-->
     <view class="btn_ok" bindtap="powerDrawer" data-statu="close" data-id='1'>数据监控</view>
-    <!-- <view class="btn_ok" bindtap="powerDrawer" data-statu="close" data-id='2'>取消查看</view> -->
+    <!--view class="btn_ok" bindtap="powerDrawer" data-statu="close" data-id='2'>取消查看</view-->
   </view>
 
 </view>

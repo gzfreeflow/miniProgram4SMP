@@ -87,7 +87,7 @@
 .input_h30 {
   font-size: 25rpx;
   height: 30px;
-  color: #979898;
+  color: #6c757d;
   line-height: 30px;
 }
 
@@ -98,14 +98,14 @@
 .input_view {
   font: 12px "microsoft yahei";
   background: #fff;
-  color: #000;
+  color: #1f2749;
   line-height: 30px;
 }
 
 input {
   font: 12px "microsoft yahei";
   background: #fff;
-  color: #000;
+  color: #1f2749;
 }
 
 radio {

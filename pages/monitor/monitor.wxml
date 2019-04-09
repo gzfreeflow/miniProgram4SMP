@@ -13,7 +13,7 @@
           <text class='device-id'>{{item.devid}}</text>
         </view>
          <view class="devices-info-state device-info-moredata">
-          <image src="/images/monitor/devices-pointright.png" />
+          <image mode='aspectFit' src="/images/monitor/devices-pointright.png" />
         </view>
       </view>
     </view>

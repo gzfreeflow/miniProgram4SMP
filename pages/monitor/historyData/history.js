@@ -5,7 +5,7 @@ Page({
         deviceId: '',
         slaveIndex: '',
         dataPointId: '',
-        startTime:Date.parse(new Date())/1000-3600,
+        startTime:Date.parse(new Date())/1000-10800,
         stopTime:Date.parse(new Date())/1000
     },
     onLoad: function (options) {
@@ -28,7 +28,7 @@ Page({
         console.log(res);
         if(res.detail.value==0){
             that.setData({
-                startTime:Date.parse(new Date())/1000-3600
+                startTime:Date.parse(new Date())/1000-10800
             })
         }else{
             that.setData({

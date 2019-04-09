@@ -34,7 +34,7 @@ Page({
     this.data.password = md5util.hexMD5(e.detail.value);
   },
 
-  // 登陆
+  // 登录
   login: function() {
     var that = this;
     if (that.data.account.length == 0 || that.data.password.length == 0) {
