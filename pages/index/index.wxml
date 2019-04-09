@@ -5,7 +5,7 @@
   id="map"
   style="width: 100%; height: {{height}}px; position: fixed; bottom: 0; border: 1px solid #e8e8ea;"
   longitude="113.324520" latitude="23.099994"
-  scale="16"
+  scale="14"
   subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF"
   show-compass="true"
   enable-zoom="true"

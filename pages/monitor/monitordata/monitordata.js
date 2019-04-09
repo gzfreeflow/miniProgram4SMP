@@ -21,15 +21,15 @@ Page({
             status: devicesInfo.onlineStatus
         });
         devOnlineStatus = devicesInfo.onlineStatus;
-        //适配两个页面传递参数不同的办法   不是很好
+        // 适配两个页面传递参数不同的办法   不是很好
         if (typeof options.devid == 'undefined') {
             devid = devicesInfo.devid;
         } else {
             devid = options.devid;
         }
-        //处理数据
+        // 处理数据
         that.handlerData(devicesInfo);
-        //获取缓存中用户数据 同步的
+        // 获取缓存中用户数据 同步的
         try {
             token = wx.getStorageSync('userinfo').data.token;
             useraccount = wx.getStorageSync('userinfo').data.account;
@@ -46,9 +46,9 @@ Page({
             });
             return;
         }
-        //1.获取数据点列表
+        // 1.获取数据点列表
         that.getDatasInfo(token);
-        //2.判断在线状态开启 websocket
+        // 2.判断在线状态开启 websocket
         that.openWebSocketConnect();
     },
 
@@ -57,7 +57,7 @@ Page({
      */
     handlerData: function (devicesInfo) {
         var that = this;
-        //修改数据
+        // 修改数据
         switch (devicesInfo.protocol) {
             case 0:
                 devicesInfo.protocol = 'Modbus RTU';
@@ -213,7 +213,7 @@ Page({
             content: '是否确定操作？',
             success: function (res) {
                 if (res.confirm) {
-                    //如果设备在线推送 否则提示用户
+                    // 如果设备在线推送 否则提示用户
                     if (devOnlineStatus === 1) {
                         // client.USR_PublishParsedSetDataPoint(devid, dataid, value);
                         client.USR_PublishParsedSetSlaveDataPoint(devid, slaveIndex, dataid, value);
@@ -247,7 +247,7 @@ Page({
                 token: token
             },
             success: function (res) {
-                //获取设备下的数据点遍历展示
+                // 获取设备下的数据点遍历展示
                 var dataInfos = res.data.data;
                 var dataInfoList = [];
                 var iotDataDescription;
@@ -264,9 +264,9 @@ Page({
                     }
                 }
                 that.setData({dataInfoList: dataInfoList});
-                //取出里面设备id和数据点id 组成一个数组
+                // 取出里面设备id和数据点id 组成一个数组
                 var DataDevIdlist = that.makeDevDataId(dataInfoList)
-                //获取最后一条数据
+                // 获取最后一条数据
                 that.getLastDataInfo(DataDevIdlist);
                 client.USR_Connect(useraccount, password);},
         })
@@ -292,7 +292,7 @@ Page({
      */
     getLastDataInfo: function (DataDevIdlist) {
         var that = this;
-        //再去获取属于此设备的最后一条数据
+        // 再去获取属于此设备的最后一条数据
         wx.request({
             url: 'https://cloudapi.usr.cn/usrCloud/datadic/getLastData',
             method: 'POST',
@@ -309,7 +309,7 @@ Page({
                 var lastDataInfos = res.data.data;
 
                 var dataInfoList = that.data.dataInfoList;
-                //更新数据
+                // 更新数据
                 for (var key in lastDataInfos) {
                     for (var key2 in dataInfoList) {
                         if (lastDataInfos[key].dataPointId == dataInfoList[key2].id&&lastDataInfos[key].slaveIndex == dataInfoList[key2].slaveIndex) {

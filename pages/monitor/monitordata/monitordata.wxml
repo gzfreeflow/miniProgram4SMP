@@ -10,7 +10,7 @@
   </view>
   <view class="device-info flex-item">
     <text class="device-info-list">通讯协议：{{devicesInfo.protocol}}</text>
-    <text class="device-info-list">通讯密码：{{devicesInfo.pass}}</text>
+    <!--text class="device-info-list">通讯密码：{{devicesInfo.pass}}</text-->
     <text class="device-info-list">轮询间隔：{{devicesInfo.polling_interval/60}}分钟</text>
     <text class="device-info-list">在线状态：{{status?"在线":"离线"}}</text>
     <text class="edit">设备地址：{{devicesInfo.address}}</text>
