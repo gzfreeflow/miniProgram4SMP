@@ -1,15 +1,17 @@
 var usrCloud = require('../../../utils/usrCloudWx');
 var md5util = require('../../../utils/md5.js');
 var client;
-//用户信息
+// 用户信息
 var token;
 var useraccount;
 var password;
-//设备信息
+
+// 设备信息
 var devid;
 var nowvalue;
 var slaveIndex;
 var devOnlineStatus;
+
 Page({
   data: {
     status: 0
@@ -21,15 +23,15 @@ Page({
       status: devicesInfo.onlineStatus
     });
     devOnlineStatus = devicesInfo.onlineStatus;
-    //适配两个页面传递参数不同的办法   不是很好
+    // 适配两个页面传递参数不同的办法   不是很好
     if (typeof options.devid == 'undefined') {
       devid = devicesInfo.devid;
     } else {
       devid = options.devid;
     }
-    //处理数据
+    // 处理数据
     that.handlerData(devicesInfo);
-    //获取缓存中用户数据 同步的
+    // 获取缓存中用户数据 同步的
     try {
       token = wx.getStorageSync('userinfo').data.token;
       useraccount = wx.getStorageSync('userinfo').data.account;
@@ -57,7 +59,7 @@ Page({
    */
   handlerData: function (devicesInfo) {
     var that = this;
-    //修改数据
+    // 修改数据
     switch (devicesInfo.protocol) {
       case 0:
         devicesInfo.protocol = 'Modbus RTU';
@@ -150,6 +152,10 @@ Page({
     };
     client = new usrCloud();
     client.Usr_Init('clouddata.usr.cn', 443, 2, callback);
+
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 12000)
   },
 
   /**
@@ -177,7 +183,7 @@ Page({
             that.switchRollBack(dataid);
             return;
           }
-          if (typeof dataid != 'undefiend' && typeof value != 'undefiend') {
+          if (typeof dataid != 'undefined' && typeof value != 'undefined') {
             // client.USR_PublishParsedSetDataPoint(devid, dataid, value ? 1 : 0);
             client.USR_PublishParsedSetSlaveDataPoint(devid, slaveIndex, dataid, value ? 1 : 0);
           }
@@ -213,7 +219,7 @@ Page({
       content: '是否确定操作？',
       success: function (res) {
         if (res.confirm) {
-          //如果设备在线推送 否则提示用户
+          // 如果设备在线推送 否则提示用户
           if (devOnlineStatus === 1) {
             // client.USR_PublishParsedSetDataPoint(devid, dataid, value);
             client.USR_PublishParsedSetSlaveDataPoint(devid, slaveIndex, dataid, value);
@@ -247,7 +253,7 @@ Page({
         token: token
       },
       success: function (res) {
-        //获取设备下的数据点遍历展示
+        // 获取设备下的数据点遍历展示
         var dataInfos = res.data.data;
         var dataInfoList = [];
         var iotDataDescription;
@@ -264,9 +270,9 @@ Page({
           }
         }
         that.setData({ dataInfoList: dataInfoList });
-        //取出里面设备id和数据点id 组成一个数组
+        // 取出里面设备id和数据点id 组成一个数组
         var DataDevIdlist = that.makeDevDataId(dataInfoList)
-        //获取最后一条数据
+        // 获取最后一条数据
         that.getLastDataInfo(DataDevIdlist);
         client.USR_Connect(useraccount, password);
       },
@@ -293,7 +299,7 @@ Page({
    */
   getLastDataInfo: function (DataDevIdlist) {
     var that = this;
-    //再去获取属于此设备的最后一条数据
+    // 再去获取属于此设备的最后一条数据
     wx.request({
       url: 'https://cloudapi.usr.cn/usrCloud/datadic/getLastData',
       method: 'POST',
@@ -320,7 +326,8 @@ Page({
             }
           }
         }
-        that.setData({ dataInfoList: dataInfoList });
+        that.setData({
+          dataInfoList: dataInfoList});
       }
     })
   },
@@ -330,20 +337,20 @@ Page({
    * 转换时间格式
    */
   getTime: function (time, format) {
-    var date = new Date(time * 1000);
+    var date = new Date(time*1000);
     if (format === undefined) {
       format = date;
       date = new Date();
     }
     var map = {
-      "y": date.getFullYear(),//年
-      "M": date.getMonth() + 1, //月份
-      "d": date.getDate(), //日
-      "h": date.getHours(), //小时
-      "m": date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(), //分
-      "s": date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds(), //秒
-      "q": Math.floor((date.getMonth() + 3) / 3), //季度
-      "S": date.getMilliseconds() //毫秒
+      "y": date.getFullYear(), // 年
+      "M": date.getMonth() + 1, // 月
+      "d": date.getDate(), // 日
+      "h": date.getHours(), // 小时
+      "m": date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(), // 分
+      "s": date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds(), // 秒
+      "q": Math.floor((date.getMonth() + 3) / 3),
+      "S": date.getMilliseconds() // 毫秒
     };
     format = format.replace(/([yMdhmsqS])+/g, function (all, t) {
       var v = map[t];
@@ -363,7 +370,7 @@ Page({
    */
   getHistory: function (param) {
     wx.navigateTo({
-      url: '../historyData/history?token=' + wx.getStorageSync("token") + "&deviceId=" + devid + "&slaveIndex=" + param.currentTarget.dataset.slaveindex + "&dataPointId=" + param.currentTarget.dataset.dataid
+      url: '../history/history?token=' + wx.getStorageSync("token") + "&deviceId=" + devid + "&slaveIndex=" + param.currentTarget.dataset.slaveindex + "&dataPointId=" + param.currentTarget.dataset.dataid
     })
   }
 });

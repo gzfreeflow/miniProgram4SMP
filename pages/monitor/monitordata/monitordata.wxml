@@ -10,7 +10,7 @@
   </view>
   <view class="device-info flex-item">
     <text class="device-info-list">通讯协议：{{devicesInfo.protocol}}</text>
-    <text class="device-info-list">通讯密码：{{devicesInfo.pass}}</text>
+    <!--text class="device-info-list">通讯密码：{{devicesInfo.pass}}</text-->
     <text class="device-info-list">轮询间隔：{{devicesInfo.polling_interval/60}}分钟</text>
     <text class="device-info-list">在线状态：{{status?"在线":"离线"}}</text>
     <text class="edit">设备地址：{{devicesInfo.address}}</text>
@@ -18,7 +18,7 @@
 </view>
 
 <!--设备对应的数据点信息  -->
-<block wx:for="{{dataInfoList}}" wx:for-index="idx">
+<block wx:for="{{dataInfoList}}" wx:for-index="idx" wx:key="{{idx}}">
   <view class="device-data-infos" data-dataid='{{item.devid}}{{idx}}'>
     <view class='device--data-icon'>
       <image src='/images/monitor/dataicon.png'></image>
@@ -42,13 +42,14 @@
     </view>
     <view class='device-data-operation' wx:else='{{item.type==0}}'>
       <view class='device-data-operation-value'>
-        <input type='digit' value='{{item.value}}' confirm-type='done' data-slaveIndex='{{item.slaveIndex}}' bindfocus="readyChangeVaule" id='{{item.id}}' data-did='{{item.did}}'  bindblur="changeVaule" disabled="{{item.iotModbusDataCmd.writeRead==1?false:true}}" />
+        <input type='digit' value='{{item.value}}' confirm-type='done' data-slaveIndex='{{item.slaveIndex}}' bindfocus="readyChangeVaule" id='{{item.id}}' data-did='{{item.did}}' bindblur="changeVaule" disabled="{{item.iotModbusDataCmd.writeRead==1?false:true}}"
+        />
         <text>{{item.unit}}</text>
       </view>
     </view>
-    <!-- <view bindtap="getHistory" data-dataid="{{item.id}}" style="font-size:37rpx;line-height:120rpx;">历史记录</view> -->
+    <!--view bindtap="getHistory" data-dataid="{{item.id}}" style="font-size:37rpx;line-height:120rpx;">历史记录</view-->
     <view bindtap="getHistory" class='data-chart' data-dataid='{{item.id}}' data-slaveIndex='{{item.slaveIndex}}'>
-      <image src='/images/monitor/chartIcon.png'></image>
+      <image src='/images/monitor/chartIcon.png' mode='aspectFit'></image>
     </view>
   </view>
 </block>
