@@ -32,7 +32,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: '/pages/monitor/monitordata/monitordata?devicesInfo=' + JSON.stringify(devicesInfo),
+      url: '/pages/monitor/monitorData/monitorData?devicesInfo=' + JSON.stringify(devicesInfo),
     })
   },
   // 搜索，访问网络  

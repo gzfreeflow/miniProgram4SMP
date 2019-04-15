@@ -1,0 +1,26 @@
+<!--web-view src="https://www.gzfreeflow.com/wxHistory?token={{token}}&deviceId={{deviceId}}&slaveIndex={{slaveIndex}}&dataPointId={{dataPointId}}"></web-view-->
+<!--view style="transform: rotate(90deg);">
+  <view style="margin-left:70rpx;width:154rpx; border-radius:29rpx; padding:10rpx; background-color:green; color:white;">
+    <picker bindchange="bindPickerChange" value="{{0}}" range="{{['最近1小时内','今天']}}">
+      <view>
+        选择范围
+      </view>
+    </picker>
+  </view>
+  <image lazy-load="true"
+  mode="widthFix"
+  src="https://cloudapi.usr.cn/pChart/usrCloud/index.php?width={{width}}&height={{height}}&deviceId={{deviceId}}&slaveIndex={{slaveIndex}}&dataPointId={{dataPointId}}&startTime={{startTime}}&stopTime={{stopTime}}"
+  style="width:{{height-100}}px;" />
+</view>
+
+<!--index.wxml-->
+<view class="section"  style="width:{{width}}px;height:{{height/2}}px;">
+    <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>
+<view class="section" style="text-align: center; width:250rpx; border-radius:10rpx; padding: 10rpx; background-color:green; color:white; margin: 20rpx 250rpx 20rpx 250rpx">
+    <picker bindchange="bindPickerChange" value="{{0}}" range="{{['过去三小时','过去一天']}}">
+        <view>
+            历史数据范围
+        </view>
+    </picker>
+</view>

@@ -1,4 +1,5 @@
 // index.js
+
 var userinfo;
 var coordtransform = require('../../utils/coord.js');
 
@@ -65,7 +66,6 @@ Page({
             ]
           }
           var bd09togcj02 = coordtransform.bd09togcj02(LatitudeLongitude[0], LatitudeLongitude[1])
-          console.log(bd09togcj02)
           var devmapinfo = {
             'iconPath': (devicesinfodevs[key].onlineStatus) == 1 ? "/images/index/mapsign.png" : "/images/index/mapsignoff.png",
             'id': devicesinfodevs[key].devid,
@@ -112,7 +112,7 @@ Page({
     var currentStatu = event.currentTarget.dataset.statu;
     var devinfosList = that.data.markers;
     var devid = event.markerId;
-    if (typeof devid != 'undefiend') {
+    if (typeof devid != 'undefined') {
       for (var key in devinfosList) {
         if (devinfosList[key].id == devid) {
           var devinfo = devinfosList[key];
@@ -147,7 +147,7 @@ Page({
           break;
         case '1':
           wx: wx.navigateTo({
-            url: '/pages/monitor/monitordata/monitordata?devicesInfo=' + JSON.stringify(that.data.devinfo) + '&&devid=' + that.data.devinfo.id,
+            url: '/pages/monitor/monitorData/monitorData?devicesInfo=' + JSON.stringify(that.data.devinfo) + '&&devid=' + that.data.devinfo.id,
           })
           break;
         case '2':

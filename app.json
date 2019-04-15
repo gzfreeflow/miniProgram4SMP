@@ -2,25 +2,26 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
-    "pages/scancode/scancode",
     "pages/monitor/monitor",
-    "pages/monitor/monitordata/monitordata",
+    "pages/monitor/monitorData/monitorData",
+    "pages/monitor/history/history",
     "pages/user/user",
-    "pages/monitor/historyData/history",
+    "pages/scancode/scancode",
     "pages/register/register"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee"
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#eee",
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTextStyle": "black"
   },
   "networkTimeout": {
     "request": 30000
   },
   "tabBar": {
     "custom": false,
-    "color": "#000",
-    "selectedColor": "#1296db",
+    "color": "#1f2749",
+    "selectedColor": "#007bff",
     "backgroundColor": "#fff",
     "list": [
       {
