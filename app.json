@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
+    "pages/devicesList/devicesList",
     "pages/monitor/monitor",
     "pages/monitor/monitorData/monitorData",
     "pages/monitor/history/history",
@@ -10,13 +11,15 @@
     "pages/register/register"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "backgroundColor": "#eee",
-    "navigationBarBackgroundColor": "#eee",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "风力新能源智慧管理平台",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "light"
   },
   "networkTimeout": {
-    "request": 30000
+    "request": 10000,
+    "connectSocket": 10000
   },
   "tabBar": {
     "custom": false,
@@ -33,7 +36,7 @@
       {
         "iconPath": "images/menu/menu_devices.png",
         "selectedIconPath": "images/menu/menu_devices_select.png",
-        "pagePath": "pages/monitor/monitor",
+        "pagePath": "pages/devicesList/devicesList",
         "text": "设备"
       },
       {

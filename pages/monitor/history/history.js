@@ -8,6 +8,10 @@ function setOption(chart) {
   var option = {
     title: {
       text: '历史数据',
+      textStyle: {
+        color: "#1f2749",
+        fontFamily: 'Microsoft Yahei',
+      },
       x: 'center',
       y: 0
     },

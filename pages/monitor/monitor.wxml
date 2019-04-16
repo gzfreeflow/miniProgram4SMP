@@ -1,23 +1,26 @@
-<view class="monitor-parent">
-
-  <scroll-view scroll-y style="height: 750px;" bindscrolltolower="searchScrollLower">
-    <view class='monitor-infos' bindtap='onClickDeviceInfo' wx:for="{{devicesInfoList}}" wx:for-index="idx" wx:key="unique" data-devid="{{item.devid}}" data-idx='{{idx}}'>
+<view class="page">
+  <scroll-view scroll-y="true" style="height: {{scrollHeight}}px;" bindscrolltolower="searchScrollLower" enable-back-to-top="true">
+    <view bindtap='onClickDeviceInfo' wx:for="{{devicesInfoList}}" wx:for-index="idx" wx:key="unique" data-devid="{{item.devid}}" data-idx='{{idx}}'>
       <!--设备信息  -->
-      <view class="monitor-device-info">
-       
-        <view class="devices-info-state">
-          <image src="{{item.onlineStatus ?'/images/monitor/online.png':'/images/monitor/offline.png'}}" />
-        </view>
-        <view class="device-info">
-          <text class="device-name">{{item.name}}</text>
-          <text class='device-id'>{{item.devid}}</text>
-        </view>
-         <view class="devices-info-state device-info-moredata">
-          <image mode='aspectFit' src="/images/monitor/devices-pointright.png" />
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+            <image src="{{item.onlineStatus ?'/images/monitor/online.png':'/images/monitor/offline.png'}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{item.name}}</view>
+            <view style="font-size: 13px;color: #888888;">{{item.devid}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
       </view>
     </view>
-    <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
-    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    <view class="weui-loadmore" hidden="{{!searchLoading}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    </view>
   </scroll-view>
 </view>

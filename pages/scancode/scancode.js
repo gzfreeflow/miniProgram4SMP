@@ -1,6 +1,8 @@
 // pages/scancode/scancode.js
 // 用户信息
+
 var token;
+
 Page({
 
   /**
@@ -15,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    //获取缓存中用户数据 同步的
+    // 获取缓存中用户数据 同步的
     try {
       token = wx.getStorageSync('userinfo').data.token;
     } catch (e) {
