@@ -1,9 +1,10 @@
 <!--history.wxml-->
 <view class="page">
-  <view style="width:{{width}}px;height:{{height/1.8}}px;">
-    <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-  </view>
+
   <view class="page__bd">
+    <view style="width:{{width}}px;height:{{height/1.9}}px;">
+      <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    </view>
     <view class="weui-btn-area">
       <picker class="weui-btn" value="{{0}}" range="{{['过去三小时','过去一天']}}" bindchange="bindPickerChange">
         <button type="default">数据范围选择</button>

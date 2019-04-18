@@ -22,22 +22,21 @@
     "connectSocket": 10000
   },
   "tabBar": {
-    "custom": false,
-    "color": "#1f2749",
-    "selectedColor": "#007bff",
+    "color": "#888888",
+    "selectedColor": "#09bb07",
     "backgroundColor": "#fff",
     "list": [
       {
-        "selectedIconPath": "images/menu/menu_monitor_select.png",
         "iconPath": "images/menu/menu_monitor.png",
+        "selectedIconPath": "images/menu/menu_monitor_select.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "位置"
       },
       {
         "iconPath": "images/menu/menu_devices.png",
         "selectedIconPath": "images/menu/menu_devices_select.png",
         "pagePath": "pages/devicesList/devicesList",
-        "text": "设备"
+        "text": "列表"
       },
       {
         "iconPath": "images/menu/menu_scancode.png",
@@ -49,8 +48,9 @@
         "iconPath": "images/menu/menu_user.png",
         "selectedIconPath": "images/menu/menu_user_select.png",
         "pagePath": "pages/user/user",
-        "text": "用户"
+        "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

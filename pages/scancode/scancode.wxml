@@ -1,1 +1,7 @@
-<button  type="primary" bindtap="scanCode">扫码添加设备</button>
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="scanCode">扫码添加设备</button>
+    </view>
+  </view>
+</view>

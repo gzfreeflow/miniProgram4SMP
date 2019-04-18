@@ -171,9 +171,9 @@ Page({
     // 第1步：创建动画实例
     var animation = wx.createAnimation({
       transformOrigin: "0% 0%",
-      duration: 200, //动画时长
-      timingFunction: "linear", //线性
-      delay: 0 //0则不延迟
+      duration: 200, // 动画时长
+      timingFunction: "linear", // 线性
+      delay: 0 // 0则不延迟
     });
 
     // 第2步：这个动画实例赋给当前的动画实例

@@ -1,3 +1,4 @@
+// login.js
 var md5util = require('../../utils/md5.js');
 var code;
 Page({

@@ -11,8 +11,8 @@
         </view>
       </view>
     </view>
-  </view>
-  <view class="weui-btn-area">
-    <button class="weui-btn" type="warn" bindtap="Signout">退出账号</button>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="warn" bindtap="Signout">退出账号</button>
+    </view>
   </view>
 </view>
