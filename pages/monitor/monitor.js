@@ -1,14 +1,18 @@
 // monitor.js
-
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 Page({
   data: {
     devicesInfoList: [], // 放置返回数据的数组  
     isFromSearch: true, // 用于判断searchSongList数组是不是空数组，默认true，空的数组  
-    searchPageNum: 15, // 设置加载的第几次，默认是第一次  
+    searchPageNum: 0, // 设置加载的第几次，默认是第一次  
     callbackcount: 0, // 返回数据的个数  
     searchLoading: false, // "上拉加载"的变量，默认false，隐藏  
     searchLoadingComplete: false, // “没有数据”的变量，默认false，隐藏
-    scrollHeight: '' // 滚动栏高度
+    scrollHeight: '', // 滚动栏高度
+    tabs: ["所有设备", "已连接", "已超时"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0
   },
 
   onLoad: function (option) {
@@ -17,18 +21,26 @@ Page({
       success: function (res) {
         console.info(res.windowHeight);
         that.setData({
-          scrollHeight: res.windowHeight
+          scrollHeight: res.windowHeight,
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
         });
       }
     });
     this.setData({
-      searchPageNum: 20, // 第一次加载，设置20 
+      searchPageNum: 300, // 第一次加载，设置300
       devicesInfoList: [], // 放置返回数据的数组,设为空  
       isFromSearch: true, // 第一次加载，设置true  
       searchLoading: true, // 把"上拉加载"的变量设为true，显示  
       searchLoadingComplete: false, // 把“没有数据”设为false，隐藏  
     })
 
+  },
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
   },
   // 点击获取设备下的数据点
   onClickDeviceInfo: function (event) {
@@ -122,7 +134,7 @@ Page({
     if (this.data.devicesInfoList.length < this.data.devicesinfo.total) {
       if (that.data.searchLoading && !that.data.searchLoadingComplete) {
         that.setData({
-          searchPageNum: that.data.searchPageNum + 20, // 每次触发上拉事件，把searchPageNum+1  
+          searchPageNum: that.data.searchPageNum + 1, // 每次触发上拉事件，把searchPageNum+1  
           isFromSearch: false // 触发到上拉事件，把isFromSearch设为为false  
         });
         that.fetchSearchList();

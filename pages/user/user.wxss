@@ -4,5 +4,6 @@
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+  margin-right: 30rpx;
   border: 3px solid #09bb0719;
 }

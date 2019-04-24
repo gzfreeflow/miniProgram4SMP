@@ -2,7 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
-    "pages/devicesList/devicesList",
     "pages/monitor/monitor",
     "pages/monitor/monitorData/monitorData",
     "pages/monitor/history/history",
@@ -18,8 +17,8 @@
     "backgroundTextStyle": "light"
   },
   "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 10000
+    "request": 20000,
+    "connectSocket": 20000
   },
   "tabBar": {
     "color": "#888888",
@@ -35,7 +34,7 @@
       {
         "iconPath": "images/menu/menu_devices.png",
         "selectedIconPath": "images/menu/menu_devices_select.png",
-        "pagePath": "pages/devicesList/devicesList",
+        "pagePath": "pages/monitor/monitor",
         "text": "列表"
       },
       {
