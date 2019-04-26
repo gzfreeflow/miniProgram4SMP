@@ -1,7 +1,61 @@
 <view class="page">
   <view class="page__bd">
+
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">设备分组</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindDevicesSetChange" value="{{setIndex}}" range="{{devicesSetsTitle}}">
+            <view class="weui-select weui-select_in-select-after">{{devicesSetsTitle[setIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">设备名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入设备名称" value='{{devName}}' bindinput='nameInput' />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">设备ID</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{devId}}" bindinput='devIdInput' />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">数据模板</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindProtocolChange" value="{{templateIndex}}" range="{{dataPointTemplateName}}">
+            <view class="weui-select weui-select_in-select-after">{{dataPointTemplateName[templateIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cells__title">位置信息</view>
+      <map id="map" subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF" longitude="{{devLongitude}}" latitude="{{devLatitude}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 330rpx;"></map>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">设备地址</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{devAddress}}" bindinput='addressInput' />
+        </view>
+      </view>
+    </view>
+
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="scanCode">扫码添加设备</button>
+      <button class="weui-btn" type="primary" bindtap="addDevice">添加设备</button>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="default" bindtap="reScanCode">重新扫码</button>
     </view>
   </view>
 </view>

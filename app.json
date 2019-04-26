@@ -9,6 +9,11 @@
     "pages/scancode/scancode",
     "pages/register/register"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于添加设备位置"
+    }
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "风力新能源智慧管理平台",
@@ -17,8 +22,8 @@
     "backgroundTextStyle": "light"
   },
   "networkTimeout": {
-    "request": 20000,
-    "connectSocket": 20000
+    "request": 10000,
+    "connectSocket": 10000
   },
   "tabBar": {
     "color": "#888888",

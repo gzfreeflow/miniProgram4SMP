@@ -101,11 +101,6 @@ Page({
     })
   },
 
-  regionchange(e) {
-    console.log(e.type)
-  },
-
-
   // 标记点击事件
   markertap(event) {
     var that = this;

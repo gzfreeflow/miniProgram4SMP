@@ -1,4 +1,4 @@
-var usrCloud = require('../../../utils/usrCloudWx');
+var usrCloud = require('../../../utils/usrCloudWx.js');
 var md5util = require('../../../utils/md5.js');
 var client;
 // 用户信息

@@ -2,7 +2,7 @@
 var md5util = require('../../utils/md5.js');
 var code;
 Page({
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     try {
       var account = wx.getStorageSync('userinfo').data.account;
@@ -24,19 +24,19 @@ Page({
   },
 
   // 获取输入账号
-  phoneInput: function(e) {
+  phoneInput: function (e) {
     this.setData({
       account: e.detail.value
     })
   },
 
   // 获取输入密码
-  passwordInput: function(e) {
+  passwordInput: function (e) {
     this.data.password = md5util.hexMD5(e.detail.value);
   },
 
   // 登录
-  login: function() {
+  login: function () {
     var that = this;
     if (that.data.account.length == 0 || that.data.password.length == 0) {
       wx.showToast({
@@ -48,7 +48,7 @@ Page({
       that.loging();
     }
   },
-  loging: function() {
+  loging: function () {
     var that = this;
     wx.showToast({
       title: '登录中',
@@ -62,10 +62,9 @@ Page({
       data: {
         account: this.data.account,
         password: this.data.password
-        // account: 'rock',
-        // password: md5util.hexMD5('rock')
+        
       },
-      success: function(res) {
+      success: function (res) {
         var userinfo = res.data;
         if (res.data.status === 0) {
           try {
@@ -90,7 +89,7 @@ Page({
           })
         }
       },
-      fail: function(err) {
+      fail: function (err) {
         console.log(err);
         wx.showToast({
           title: '信息错误',
@@ -98,23 +97,23 @@ Page({
           duration: 1000
         })
       },
-      complete: function(res) {
+      complete: function (res) {
         wx.hideLoading();
       }
     })
   },
-  register: function() {
+  register: function () {
     wx.reLaunch({
       url: '../register/register'
     })
   },
-  reset: function(res0) {
+  reset: function (res0) {
     wx.showModal({
       title: '确认重置密码？',
-      success: function(res1) {
+      success: function (res1) {
         if (res1.confirm) {
           wx.login({
-            success: function(res2) {
+            success: function (res2) {
               wx.request({
                 url: 'https://cloudapi.usr.cn/usrCloud/user/wechatResetPass',
                 method: 'POST',
@@ -124,7 +123,7 @@ Page({
                   "code": res2.code,
                   "templateId": "9AUTzKhkSIyhBAQtdW989W3wwXQvFer3F_ZJpu1GHbI"
                 },
-                success: function(res3) {
+                success: function (res3) {
                   console.log(res3);
                 }
               });
@@ -134,12 +133,12 @@ Page({
       }
     })
   },
-  wxLogin: function() {
+  wxLogin: function () {
     wx.showLoading({
       'title': '登录中'
     });
     wx.login({
-      success: function(res) {
+      success: function (res) {
         wx.request({
           // url: 'https://cloudapi.usr.cn/usrCloud/user/login',
           url: 'https://cloudapi.usr.cn/usrCloud/user/wechatLogin',
@@ -148,7 +147,7 @@ Page({
             "code": res.code,
             "type": 0
           },
-          success: function(res1) {
+          success: function (res1) {
             wx.hideLoading();
             if (res1.data.status == 0) {
               wx.setStorage({

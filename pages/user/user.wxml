@@ -2,7 +2,7 @@
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style='margin-right: 30rpx'>获取头像昵称</button>
         <block wx:else>
           <image bindtap="bindViewTap" class="avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
         </block>
@@ -13,6 +13,12 @@
     </view>
     <view class="weui-btn-area">
       <button class="weui-btn" type="warn" bindtap="Signout">退出账号</button>
+    </view>
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">广州风力新能源科技有限公司</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2019 gzfreeflow.com</view>
     </view>
   </view>
 </view>
