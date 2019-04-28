@@ -173,7 +173,6 @@ Page({
     var that = this;
     var gcj02tobd09 = coordtransform.gcj02tobd09(that.data.devLongitude, that.data.devLatitude);
     var location = gcj02tobd09.toString();
-    console.log(location)
     wx.request({
       url: 'https://cloudapi.usr.cn/usrCloud/dev/addDevice',
       method: "POST",
@@ -200,6 +199,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function(res){
+        console.log(res)
         wx.switchTab({
           url: '../../pages/monitor/monitor',
         })

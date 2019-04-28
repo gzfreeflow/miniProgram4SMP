@@ -25,7 +25,7 @@
           <view class="weui-label">设备ID</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" value="{{devId}}" bindinput='devIdInput' />
+          <input class="weui-input" placeholder="设备ID不多于12位" value="{{devId}}" bindinput='devIdInput' />
         </view>
       </view>
       <view class="weui-cell weui-cell_select">

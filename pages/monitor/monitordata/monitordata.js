@@ -73,7 +73,9 @@ Page({
       default:
         break;
     }
-    that.setData({ devicesInfo: devicesInfo });
+    that.setData({
+      devicesInfo: devicesInfo
+    });
   },
 
   trim: function (s) {
@@ -118,7 +120,9 @@ Page({
           }
         }
       }
-      that.setData({ dataInfoList: dataInfoList });
+      that.setData({
+        dataInfoList: dataInfoList
+      });
       console.log('USR_onRcvParsedDataPointPush', e);
     }
 
@@ -197,7 +201,9 @@ Page({
    * 开关按钮回滚
    */
   switchRollBack: function (dataid) {
-    this.setData({ dataInfoList: this.data.dataInfoList });
+    this.setData({
+      dataInfoList: this.data.dataInfoList
+    });
   },
 
 
@@ -232,7 +238,9 @@ Page({
           }
         }
 
-        that.setData({ dataInfoList: that.data.dataInfoList });
+        that.setData({
+          dataInfoList: that.data.dataInfoList
+        });
       }
     })
   },
@@ -269,7 +277,9 @@ Page({
             }
           }
         }
-        that.setData({ dataInfoList: dataInfoList });
+        that.setData({
+          dataInfoList: dataInfoList
+        });
         // 取出里面设备id和数据点id 组成一个数组
         var DataDevIdlist = that.makeDevDataId(dataInfoList)
         // 获取最后一条数据
@@ -327,7 +337,8 @@ Page({
           }
         }
         that.setData({
-          dataInfoList: dataInfoList});
+          dataInfoList: dataInfoList
+        });
       }
     })
   },
@@ -337,7 +348,7 @@ Page({
    * 转换时间格式
    */
   getTime: function (time, format) {
-    var date = new Date(time*1000);
+    var date = new Date(time * 1000);
     if (format === undefined) {
       format = date;
       date = new Date();

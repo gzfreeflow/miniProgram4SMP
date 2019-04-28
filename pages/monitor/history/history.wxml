@@ -1,6 +1,9 @@
 <!--history.wxml-->
 <view class="page">
-
+  <view class="page__hd">
+    <view class="page__title">{{dataPointName}}</view>
+    <view class="page__desc">{{deviceId}}</view>
+  </view>
   <view class="page__bd">
     <view style="width:{{width}}px;height:{{height/1.9}}px;">
       <ec-canvas id="mychart" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>

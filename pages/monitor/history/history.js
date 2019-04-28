@@ -6,6 +6,9 @@ let data = [];
 
 function setOption(chart) {
   var option = {
+    title: {
+      show: false,
+    },
     dataZoom: [{
       show: true,
       start: 0,
@@ -65,6 +68,7 @@ Page({
     deviceId: '',
     slaveIndex: '',
     dataPointId: '',
+    dataPointName: '',
     startTime: Date.parse(new Date()) / 1000 - 10800,
     stopTime: Date.parse(new Date()) / 1000,
     ec: {
@@ -104,6 +108,7 @@ Page({
     });
 
     this.getData(0);
+    this.getDataInfo()
   },
   getData(type) {
     wx.request({
@@ -131,6 +136,23 @@ Page({
         that.initChart();
       }
     });
+  },
+  getDataInfo: function () {
+    var that = this
+    wx.request({
+      url: 'https://cloudapi.usr.cn/usrCloud/datadic/getData',
+      method: 'POST',
+      data: {
+        token: wx.getStorageSync('token'),
+        id: that.dataPointId
+      },
+      success: function (res) {
+        var dataPointName = res.data.data.name
+        that.setData({
+          dataPointName: dataPointName
+        })
+      }
+    })
   },
   bindPickerChange: function (res) {
     let startTime = '';
