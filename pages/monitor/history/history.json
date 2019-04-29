@@ -1,6 +1,1 @@
-{
-  "usingComponents": {
-    "ec-canvas": "../../../ec-canvas/ec-canvas"
-  },
-  "navigationBarTitleText": "历史数据"
-}
+{"usingComponents":{"ec-canvas":"../../../ec-canvas/ec-canvas"},"navigationBarTitleText":"历史数据"}

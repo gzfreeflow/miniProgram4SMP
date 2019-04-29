@@ -10,6 +10,7 @@ var qqmapsdk = new QQMapWX({
  * 用户信息
  */
 var token;
+var userId;
 
 Page({
 
@@ -28,9 +29,6 @@ Page({
     templateIndex: 0,
     hasLocation: false,
     markers: [],
-  },
-  regionchange(e) {
-    console.log(e.type)
   },
   markertap: function () {
     var that = this
@@ -67,13 +65,14 @@ Page({
     var that = this;
     // 获取缓存中用户数据 同步的
     try {
+      userId = wx.getStorageSync('userinfo').data.uid;
       token = wx.getStorageSync('userinfo').data.token;
     } catch (e) {
       console.log('获取缓存失败' + e);
       wx.showToast({
         title: '获取缓存失败',
         icon: 'loading',
-        duration: 2000
+        duration: 3000
       });
       wx.reLaunch({
         url: '/pages/login/login'
@@ -82,8 +81,7 @@ Page({
     }
     that.getDevGroups();
     that.getDataPointTemplateList();
-    that.getDevLocation();
-    that.scanCode()
+    that.getDevLocation()
   },
 
   /**
@@ -112,11 +110,21 @@ Page({
       devAddress: e.detail.value
     })
   },
-
+  /**
+   * 补齐数字字符串
+   */
+  pad: function (num, n) {
+    var len = num.toString().length;
+    while (len < n) {
+      num = "0" + num;
+      len++;
+    }
+    return num;
+  },
   /**
    * 重新扫码以及获取列表信息
    */
-  reScanCode: function () {
+  reScanQRCode: function () {
     wx.reLaunch({
       url: '../../pages/scancode/scancode',
     })
@@ -173,44 +181,96 @@ Page({
     var that = this;
     var gcj02tobd09 = coordtransform.gcj02tobd09(that.data.devLongitude, that.data.devLatitude);
     var location = gcj02tobd09.toString();
-    wx.request({
-      url: 'https://cloudapi.usr.cn/usrCloud/dev/addDevice',
-      method: "POST",
-      data: {
-        device: {
-          deviceId: that.data.devId,
-          groupId: that.data.devicesSets[that.data.setIndex].id,
-          name: that.data.devName,
-          type: 0,
-          pollingInterval: 300,
-          protocol: 0,
-          address: that.data.devAddress,
-          position: location
+    if (!isNaN(that.data.devId) && that.data.devId.length == 20) {
+      wx.request({
+        url: 'https://cloudapi.usr.cn/usrCloud/dev/getDevs',
+        method: 'POST',
+        data: {
+          page_param: {
+            offset: 0,
+            limit: 10000
+          },
+          sort: 'up',
+          token: token
         },
-        deviceSlaves: [{
-          slaveIndex: 1,
-          slaveName: '默认',
-          slaveAddr: 2,
-          dataTemplateId: that.data.dataPointTemplate[that.data.templateIndex].id
-        }],
-        token: token
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res){
-        console.log(res)
-        wx.switchTab({
-          url: '../../pages/monitor/monitor',
-        })
-      }
-    })
+        success: function (res) {
+          var devInfo = res.data.data.dev;
+          that.setData({
+            devInfo: devInfo
+          });
+          var duplicate = [];
+          for (var key in devInfo) {
+            if (devInfo[key].devid == that.data.devId) {
+              duplicate.push(devInfo[key].devid)
+            }
+          }
+          that.setData({
+            duplicate: duplicate
+          });
+          if (duplicate.length != 0) {
+            wx.showToast({
+              title: '设备已存在',
+              icon: 'loading',
+              duration: 3000
+            })
+          } else {
+            var padUserId = that.pad(userId, 8);
+            var sliceUserId = that.data.devId.slice(0, 8);
+            if (sliceUserId == padUserId) {
+              wx.request({
+                url: 'https://cloudapi.usr.cn/usrCloud/dev/addDevice',
+                method: "POST",
+                data: {
+                  device: {
+                    deviceId: that.data.devId.slice(8),
+                    groupId: that.data.devicesSets[that.data.setIndex].id,
+                    name: that.data.devName,
+                    type: 0,
+                    pollingInterval: 600,
+                    protocol: 0,
+                    address: that.data.devAddress,
+                    position: location
+                  },
+                  deviceSlaves: [{
+                    slaveIndex: 1,
+                    slaveName: '默认',
+                    slaveAddr: 2,
+                    dataTemplateId: that.data.dataPointTemplate[that.data.templateIndex].id
+                  }],
+                  token: token
+                },
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                success: function (res) {
+                  console.log(res)
+                  wx.navigateTo({
+                    url: '../../pages/msg/msg_success',
+                  })
+                }
+              })
+            } else {
+              wx.navigateTo({
+                url: '../../pages/msg/msg_fail',
+              })
+            }
+          }
+        }
+      })
+
+    } else {
+      wx.showToast({
+        title: '格式错误',
+        icon: 'loading',
+        duration: 3000
+      })
+    }
   },
 
   /**
    * 扫码
    */
-  scanCode: function () {
+  scanQRCode: function () {
     var that = this;
     wx.scanCode({
       success(res) {
@@ -288,9 +348,9 @@ Page({
       },
       fail: function (res) {
         wx.showToast({
-          title: '获取设备分组信息失败，请重新登录后再试',
+          title: '连接已超时',
           icon: 'loading',
-          duration: 5000
+          duration: 3000
         });
       }
     })
@@ -306,7 +366,7 @@ Page({
       data: {
         page_param: {
           offset: 0,
-          limit: 100
+          limit: 1000
         },
         token: token
       },
@@ -338,17 +398,17 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '当前用户未查有数据模板，请在网页端添加后再试',
+            title: '未创建模板',
             icon: 'loading',
-            duration: 5000
+            duration: 3000
           });
         }
       },
       fail: function (res) {
         wx.showToast({
-          title: '获取模板列表信息失败，请重新登录后再试',
+          title: '连接已超时',
           icon: 'loading',
-          duration: 5000
+          duration: 3000
         });
       }
     })
@@ -357,7 +417,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this;
+    that.scanQRCode()
   },
 
   /**

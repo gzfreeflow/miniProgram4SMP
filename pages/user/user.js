@@ -43,7 +43,8 @@ Page({
       key: 'userinfo',
       success: function(res) {
         that.setData({
-          userAccount: res.data.data.account
+          userAccount: res.data.data.account,
+          userId: res.data.data.uid
         });
         console.log(res);
       }

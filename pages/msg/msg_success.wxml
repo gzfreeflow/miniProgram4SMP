@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="weui-msg">
+    <view class="weui-msg__icon-area">
+      <icon type="success" size="93"></icon>
+    </view>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">添加成功</view>
+      <view class="weui-msg__desc">现可通过小程序或网页端管理您的设备</view>
+    </view>
+    <view class="weui-msg__opr-area">
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap='keepAdding'>继续添加</button>
+        <button class="weui-btn" type="default" bindtap='checkList'>查看设备列表</button>
+      </view>
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+          <navigator class="weui-footer__link">广州市风力新能源科技有限公司</navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2019 gzfreeflow.com</view>
+      </view>
+    </view>
+  </view>
+</view>

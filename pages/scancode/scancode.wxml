@@ -22,10 +22,10 @@
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label">设备ID</view>
+          <view class="weui-label">设备序号</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="设备ID不多于12位" value="{{devId}}" bindinput='devIdInput' />
+          <input class="weui-input" placeholder="由8位用户码与12位设备码组成" value="{{devId}}" bindinput='devIdInput' />
         </view>
       </view>
       <view class="weui-cell weui-cell_select">
@@ -39,7 +39,7 @@
         </view>
       </view>
       <view class="weui-cells__title">位置信息</view>
-      <map id="map" subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF" longitude="{{devLongitude}}" latitude="{{devLatitude}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 330rpx;"></map>
+      <map id="map" subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF" longitude="{{devLongitude}}" latitude="{{devLatitude}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 330rpx;"></map>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">设备地址</view>
@@ -55,7 +55,7 @@
     </view>
 
     <view class="weui-btn-area">
-      <button class="weui-btn" type="default" bindtap="reScanCode">重新扫码</button>
+      <button class="weui-btn" type="default" bindtap="reScanQRCode">重新扫码</button>
     </view>
   </view>
 </view>

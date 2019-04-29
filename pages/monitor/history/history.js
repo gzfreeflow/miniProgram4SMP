@@ -13,7 +13,7 @@ function setOption(chart) {
       show: true,
       start: 0,
       end: 100,
-    },],
+    }],
     tooltip: {
       trigger: 'axis',
       formatter: function (params) {

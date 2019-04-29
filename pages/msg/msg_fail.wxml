@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="weui-msg">
+    <view class="weui-msg__icon-area">
+      <icon type="warn" size="93"></icon>
+    </view>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">添加失败</view>
+      <view class="weui-msg__desc">设备用户码与当前登录用户码不一致或设备序号格式错误，请确认后重试</view>
+    </view>
+    <view class="weui-msg__opr-area">
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap='reScan'>重新扫码</button>
+        <button class="weui-btn" type="default" bindtap='checkUserInfo'>查看用户信息</button>
+      </view>
+    </view>
+    <view class="weui-msg__extra-area">
+      <view class="weui-footer">
+        <view class="weui-footer__links">
+          <navigator class="weui-footer__link">广州市风力新能源科技有限公司</navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2019 gzfreeflow.com</view>
+      </view>
+    </view>
+  </view>
+</view>
