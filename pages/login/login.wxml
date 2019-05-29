@@ -41,7 +41,7 @@
         </button>
       </form>
       <form>
-        <button class='weui-form-preview__btn weui-form-preview__btn_link' bindtap="wxLogin">微信登录
+        <button class='weui-form-preview__btn weui-form-preview__btn_link' bindtap="testLogin">体验账号
         </button>
       </form>
     </view>

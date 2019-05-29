@@ -62,7 +62,7 @@ Page({
       data: {
         account: this.data.account,
         password: this.data.password
-        
+
       },
       success: function (res) {
         var userinfo = res.data;
@@ -130,6 +130,60 @@ Page({
             }
           });
         }
+      }
+    })
+  },
+  testLogin: function () {
+    var that = this;
+    wx.showToast({
+      title: '登录中',
+      icon: 'loading',
+      duration: 1000
+    });
+
+    wx.request({
+      url: 'https://cloudapi.usr.cn/usrCloud/user/login',
+      method: 'POST',
+      data: {
+        account: 'sheng_z_sub',
+        password: md5util.hexMD5('123321')
+
+      },
+      success: function (res) {
+        var userinfo = res.data;
+        if (res.data.status === 0) {
+          try {
+            wx.setStorageSync('userinfo', userinfo);
+            wx.setStorageSync('userpass', that.data.password);
+            wx.setStorageSync('token', res.data.data.token);
+          } catch (e) {
+            wx.showToast({
+              title: '获取缓存失败，请重启',
+              icon: 'loading',
+              duration: 1000
+            })
+          }
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        } else {
+          wx.showToast({
+            title: '信息错误',
+            icon: 'loading',
+            duration: 1000
+          })
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+        wx.showToast({
+          title: '信息错误',
+          icon: 'loading',
+          duration: 1000
+        })
+      },
+      complete: function (res) {
+        wx.hideLoading();
       }
     })
   },

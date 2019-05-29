@@ -1,5 +1,5 @@
 {
-	"description": "风力新能源云智慧管理平台",
+	"description": "Free Flow智慧管理平台",
 	"packOptions": {
 		"ignore": []
 	},
@@ -10,7 +10,8 @@
 		"minified": true,
 		"newFeature": true,
 		"nodeModules": false,
-		"autoAudits": false
+		"autoAudits": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",

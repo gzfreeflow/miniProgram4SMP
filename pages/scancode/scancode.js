@@ -181,7 +181,7 @@ Page({
     var that = this;
     var gcj02tobd09 = coordtransform.gcj02tobd09(that.data.devLongitude, that.data.devLatitude);
     var location = gcj02tobd09.toString();
-    if (!isNaN(that.data.devId) && that.data.devId.length == 20) {
+    if (!isNaN(that.data.devId) && that.data.devId.length === 20) {
       wx.request({
         url: 'https://cloudapi.usr.cn/usrCloud/dev/getDevs',
         method: 'POST',
@@ -200,7 +200,7 @@ Page({
           });
           var duplicate = [];
           for (var key in devInfo) {
-            if (devInfo[key].devid == that.data.devId) {
+            if (devInfo[key].devid === that.data.devId) {
               duplicate.push(devInfo[key].devid)
             }
           }
@@ -216,7 +216,7 @@ Page({
           } else {
             var padUserId = that.pad(userId, 8);
             var sliceUserId = that.data.devId.slice(0, 8);
-            if (sliceUserId == padUserId) {
+            if (sliceUserId === padUserId) {
               wx.request({
                 url: 'https://cloudapi.usr.cn/usrCloud/dev/addDevice',
                 method: "POST",
