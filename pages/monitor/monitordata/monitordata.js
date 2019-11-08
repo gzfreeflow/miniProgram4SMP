@@ -159,7 +159,7 @@ Page({
 
     setTimeout(function () {
       wx.hideLoading()
-    }, 12000)
+    }, 2000)
   },
 
   /**

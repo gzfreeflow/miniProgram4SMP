@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2017 USR
- * mqtt websocket
- * @Author USR
- * http://www.usr.cn
- */
-
 //'use strict';
 
 var PahoMqtt = require('mqttwsWx31.js');

@@ -30,32 +30,18 @@ Page({
     hasLocation: false,
     markers: [],
   },
-  markertap: function () {
-    var that = this
-    wx.chooseLocation({
-      success: function (res) {
-        // success
-        console.log(res)
-        that.setData({
-          hasLocation: true,
-          devLatitude: res.latitude,
-          devLongitude: res.longitude,
-          devAddress: res.address
-        })
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      }
-    })
-  },
   bindDevicesSetChange: function (e) {
     console.log('picker devices set 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
       setIndex: e.detail.value
+    })
+  },
+  bindProtocolChange: function (e) {
+    console.log('picker protocol 发生选择改变，携带值为', e.detail.value);
+
+    this.setData({
+      templateIndex: e.detail.value
     })
   },
   /**
@@ -147,7 +133,11 @@ Page({
           latitude: devLatitude,
           longitude: devLongitude,
           width: 50,
-          height: 50
+          height: 50,
+          anchor: {
+            x: .5,
+            y: 1
+          }
         })
         that.setData({
           devLongitude: devLongitude,
@@ -418,7 +408,45 @@ Page({
    */
   onReady: function () {
     var that = this;
-    that.scanQRCode()
+    that.scanQRCode();
+    // 使用 wx.createMapContext 获取 map 上下文
+    this.mapCtx = wx.createMapContext('map')
+  },
+  translateLM: function () {
+    var that = this;
+    this.mapCtx.getCenterLocation({
+      success: function (res) {
+        console.log(res.longitude)
+        console.log(res.latitude)
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (addressRes) {
+            var addressRes = addressRes.result;
+            console.log(addressRes.address)
+            that.setData({
+              devAddress: addressRes.address
+            })
+          },
+          fail: function (error) {
+            console.log('获取地址失败');
+          }
+        })
+        that.mapCtx.translateMarker({
+          markerId: 0,
+          duration: 1000,
+          destination: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          animationEnd() {
+            console.log('animation end')
+          }
+        })
+      }
+    })
   },
 
   /**

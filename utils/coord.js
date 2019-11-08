@@ -31,15 +31,19 @@
    * @returns {*[]}
    */
   var bd09togcj02 = function bd09togcj02(bd_lon, bd_lat) {
-    var bd_lon = +bd_lon;
-    var bd_lat = +bd_lat;
-    var x = bd_lon - 0.0065;
-    var y = bd_lat - 0.006;
-    var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_PI);
-    var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_PI);
-    var gg_lng = z * Math.cos(theta);
-    var gg_lat = z * Math.sin(theta);
-    return [gg_lng, gg_lat]
+    if (out_of_china(bd_lon, bd_lat)) {
+      return [bd_lon, bd_lat]
+    } else {
+      var bd_lon = +bd_lon;
+      var bd_lat = +bd_lat;
+      var x = bd_lon - 0.0065;
+      var y = bd_lat - 0.006;
+      var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_PI);
+      var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_PI);
+      var gg_lng = z * Math.cos(theta);
+      var gg_lat = z * Math.sin(theta);
+      return [gg_lng, gg_lat]
+    }
   };
 
   /**
@@ -50,13 +54,17 @@
    * @returns {*[]}
    */
   var gcj02tobd09 = function gcj02tobd09(lng, lat) {
-    var lat = +lat;
-    var lng = +lng;
-    var z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_PI);
-    var theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_PI);
-    var bd_lng = z * Math.cos(theta) + 0.0065;
-    var bd_lat = z * Math.sin(theta) + 0.006;
-    return [bd_lng, bd_lat]
+    if (out_of_china(lng, lat)) {
+      return [lng, lat]
+    } else {
+      var lat = +lat;
+      var lng = +lng;
+      var z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_PI);
+      var theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_PI);
+      var bd_lng = z * Math.cos(theta) + 0.0065;
+      var bd_lat = z * Math.sin(theta) + 0.006;
+      return [bd_lng, bd_lat]
+    }
   };
 
   /**

@@ -7,7 +7,7 @@
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
       <!--账号-->
-      <view class="weui-cell weui-cell_input">
+      <view class="weui-cell">
         <view class="weui-cell__hd">
           <view class="weui-label">账号</view>
         </view>
@@ -16,7 +16,7 @@
         </view>
       </view>
       <!--密码-->
-      <view class="weui-cell weui-cell_input">
+      <view class="weui-cell">
         <view class="weui-cell__hd">
           <view class="weui-label">密码</view>
         </view>

@@ -28,7 +28,7 @@ Page({
       }
     });
     this.setData({
-      searchPageNum: 300, // 第一次加载，设置300
+      searchPageNum: 500, // 第一次加载，设置500
       devicesInfoList: [], // 放置返回数据的数组,设为空  
       isFromSearch: true, // 第一次加载，设置true  
       searchLoading: true, // 把"上拉加载"的变量设为true，显示  

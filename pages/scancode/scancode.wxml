@@ -12,7 +12,7 @@
           </picker>
         </view>
       </view>
-      <view class="weui-cell weui-cell_input">
+      <view class="weui-cell">
         <view class="weui-cell__hd">
           <view class="weui-label">设备名称</view>
         </view>
@@ -20,7 +20,7 @@
           <input class="weui-input" placeholder="请输入设备名称" value='{{devName}}' bindinput='nameInput' />
         </view>
       </view>
-      <view class="weui-cell weui-cell_input">
+      <view class="weui-cell">
         <view class="weui-cell__hd">
           <view class="weui-label">设备序号</view>
         </view>
@@ -39,8 +39,8 @@
         </view>
       </view>
       <view class="weui-cells__title">位置信息</view>
-      <map id="map" subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF" longitude="{{devLongitude}}" latitude="{{devLatitude}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 330rpx;"></map>
-      <view class="weui-cell weui-cell_input">
+      <map id="map" subkey="HZ3BZ-764KU-EIEV3-4QKWC-7DWTK-UDBZF" longitude="{{devLongitude}}" latitude="{{devLatitude}}" scale="17" markers="{{markers}}" show-location bindregionchange="translateLM" style="width: 100%; height: 333rpx;"></map>
+      <view class="weui-cell">
         <view class="weui-cell__hd">
           <view class="weui-label">设备地址</view>
         </view>
